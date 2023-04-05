@@ -1,12 +1,12 @@
 
-const darkTheme = {
+export const darkTheme = {
     bg:"#181818",
     bgLighter:"#202020",
     text:"white",
     textSoft:"#aaaaaa",
     soft:"#373737"
 }
-const lightTheme = {
+export const lightTheme = {
     bg:"#f9f9f9",
     bgLighter:"white",
     text:"black",
@@ -14,4 +14,3 @@ const lightTheme = {
     soft:"#f5f5f5"
 }
 
-export { darkTheme, lightTheme };

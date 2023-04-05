@@ -3,6 +3,8 @@ import React from 'react';
 import styled from 'styled-components';
 import channelmg from '../img/channelimg.jpg';
 import Comments from '../components/Comments';
+import Card from '../components/Card';
+import { useTheme } from "@mui/material";
 
 const Container = styled.div`
   display: flex;
@@ -19,7 +21,7 @@ const Title = styled.h1`
   font-weight: 400;
   margin-top: 20px;
   margin-bottom: 10px;
-  color: black; // ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.text};
 `;
 
 const Details = styled.div`
@@ -29,12 +31,12 @@ const Details = styled.div`
 `;
 
 const Info = styled.span`
-  color: black; // ${({ theme }) => theme.textSoft};
+  color: ${({ theme }) => theme.textSoft};
 `;
 const Buttons = styled.div`
   display: flex;
   gap: 20px;
-  color: black; //${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.text};
 `;
 const Button = styled.div`
   display: flex;
@@ -45,7 +47,7 @@ const Button = styled.div`
 
 const Hr = styled.hr`
   margin: 15px 0px;
-  border: 0.5px solid black; // 0.5px solid ${({ theme }) => theme.soft};
+  border: 0.5px solid ${({ theme }) => theme.soft};
 `;
 
 const Recommendation = styled.div`
@@ -71,7 +73,7 @@ const Image = styled.img`
 const ChannelDetail = styled.div`
   display: flex;
   flex-direction: column;
-  color: black; //${({theme}) => theme.text};
+  color: ${({theme}) => theme.text};
 `;
 
 const ChannelName = styled.span`
@@ -81,7 +83,7 @@ const ChannelName = styled.span`
 const ChannelCounter = styled.span`
   margin-top: 5px;
   margin-bottom: 20px;
-  color: black; //${({theme}) => theme.text};
+  color: ${({theme}) => theme.textSoft};
   font-size: 12px;
 `;
 
@@ -101,6 +103,9 @@ const Subscribe = styled.button`
 `;
 
 const Video = () => {
+
+  const theme = useTheme();
+
   return (
     <Container>
       <Content>
@@ -110,15 +115,15 @@ const Video = () => {
             height="550" //720
             src="https://www.youtube.com/embed/ueDd6QzG-IY"
             title='Youtube video player'
-            frameborder="0"
             allow='accelerometer; autoplay; clipboard-white; encrypted-media; gyroscope; picture-in-picture'
             allowFullScreen
+            style={{border: 0}}
           ></iframe>
         </VideoWrapper>
-        <Title>Test Video</Title>
+        <Title theme={theme}>Test Video</Title>
         <Details>
-          <Info>7,660,908 views · June 22, 2023</Info>
-          <Buttons>
+          <Info theme={theme}>7,660,908 views · June 22, 2023</Info>
+          <Buttons theme={theme}>
             <Button>
               <ThumbUpOutlined /> 123
             </Button>
@@ -133,22 +138,34 @@ const Video = () => {
             </Button>
           </Buttons>
         </Details>
-        <Hr />
+        <Hr theme={theme} />
         <Channel>
           <ChannelInfo>
             <Image src={channelmg}></Image>
-            <ChannelDetail>
-              <ChannelName>Lama Dev</ChannelName>
-              <ChannelCounter>200K subscribers</ChannelCounter>
+            <ChannelDetail theme={theme}>
+              <ChannelName>React Dev</ChannelName>
+              <ChannelCounter theme={theme}>200K subscribers</ChannelCounter>
               <Description>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, numquam autem iusto illo ut error quas alias suscipit aliquid repellat facere eos temporibus similique, deserunt dolorum? Quibusdam iusto reiciendis dolores.</Description>
             </ChannelDetail>
           </ChannelInfo>
           <Subscribe> SUBSCRIBE</Subscribe>
         </Channel>
-        <Hr />
+        <Hr theme={theme} />
         <Comments />
       </Content>
-      <Recommendation>recommendation</Recommendation>
+      <Recommendation>
+        <Card type="sm" />
+        <Card type="sm" />
+        <Card type="sm" />
+        <Card type="sm" />
+        <Card type="sm" />
+        <Card type="sm" />
+        <Card type="sm" />
+        <Card type="sm" />
+        <Card type="sm" />
+        <Card type="sm" />
+        <Card type="sm" />
+      </Recommendation>
     </Container>
   )
 }

@@ -1,16 +1,16 @@
-import React from "react";
+import React from "react";  
 import styled from "styled-components";
-import LamaTube from "../img/logo.png";
+import Youtube from "../img/logo.png";
 import HomeIcon from '@mui/icons-material/Home';
 import { ExploreOutlined, HelpOutlineOutlined, SettingsBrightnessOutlined, SubscriptOutlined, VideoLibraryOutlined, HistoryOutlined, MusicNoteOutlined, SportsOutlined, GamesOutlined, MovieOutlined, NewspaperOutlined, LiveTvOutlined, SettingsOutlined, ReportOutlined, AccountCircleOutlined } from "@mui/icons-material";
-// import { useTheme } from "@mui/material";
+import { useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const Container = styled.div`
   flex: 1;
-  background-color: black; //theme.bgLighter
-  height: 100%; 
-  color: white;
+  background-color: ${({theme}) => theme.bg};
+  height: 100%;
+  color: ${({theme}) => theme.text};
   font-size: 14px;
   position: sticky;
   top: 0;
@@ -38,11 +38,15 @@ const Item = styled.div`
   gap: 20px;
   cursor: pointer;
   padding: 7.5px 0px;
+
+  &:hover{
+    background-color: ${({theme}) => theme.soft};
+  }
 `;
 
 const Hr = styled.hr`
   margin: 15px 0px;
-  border: 0.5px solid #373737;
+  border: 0.5px solid ${({theme}) => theme.soft};
 `;
 
 const Login = styled.div``
@@ -67,85 +71,92 @@ const Title = styled.h2`
   margin-bottom: 20px;
 `
 
-const Menu = () => {
+const Menu = ({darkMode, setDarkMode}) => {
+
+  const theme = useTheme();
 
   return (
-    <Container>
+    <Container theme={theme}>
       <Wrapper>
         <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
           <Logo>
-            <Img src={LamaTube} />
-            LamaTube
+            <Img src={Youtube} />
+            YOUTUBE
           </Logo>
         </Link>
-        <Item>
+        <Item theme={theme}>
           <HomeIcon />
           Home
         </Item>
-        <Item>
+        <Item theme={theme}>
           <ExploreOutlined />
           Explore
         </Item>
-        <Item>
+        <Item theme={theme}>
           <SubscriptOutlined />
           Subscription
         </Item>
-        <Hr />
-        <Item>
+        <Hr theme={theme}/>
+        <Item theme={theme}>
           <VideoLibraryOutlined />
           Library
         </Item>
-        <Item>
+        <Item theme={theme}>
           <HistoryOutlined />
           History
         </Item>
-        <Hr />
+        <Hr theme={theme}/>
         <Login>
           Sign in to like videos, comment, and subscribe.
-          <Button><AccountCircleOutlined />SIGN IN</Button>
+          <Link to="signin" style={{textDecoration:"none"}}>
+          <Button>
+            <AccountCircleOutlined />
+            SIGN IN
+            </Button>
+            </Link>
         </Login>
-        <Hr />
-        <Title>BEST OF LAMATUBE</Title>
-        <Item>
+        <Hr theme={theme}/>
+        <Title>BEST OF YOUTUBE</Title>
+        <Item theme={theme}>
           <MusicNoteOutlined />
           Music
         </Item>
-        <Item>
+        <Item theme={theme}>
           <SportsOutlined />
           Sports
         </Item>
-        <Item>
+        <Item theme={theme}>
           <GamesOutlined />
           Gaming
         </Item>
-        <Item>
+        <Item theme={theme}>
           <MovieOutlined />
           Movies
         </Item>
-        <Item>
+        <Item theme={theme}>
           <NewspaperOutlined />
           News
         </Item>
-        <Item>
+        <Item theme={theme}>
           <LiveTvOutlined />
           Live
         </Item>
-        <Hr />
-        <Item>
+        <Hr theme={theme}/>
+        <Item theme={theme}>
           <SettingsOutlined />
           Setings
         </Item>
-        <Item>
+        <Item theme={theme}>
           <ReportOutlined />
           Report
         </Item>
-        <Item>
+        <Item theme={theme}>
           <HelpOutlineOutlined />
           Help
         </Item>
-        <Item>
+        <Item theme={theme} onClick={() => setDarkMode((current) => !current)}>
           <SettingsBrightnessOutlined />
-          Light Mode {/*{darkMode ? "Light" : "Dark"*/}
+           {theme.bg === "#181818" ? "Dark" : "Light"} Mode
         </Item>
       </Wrapper>
     </Container>
